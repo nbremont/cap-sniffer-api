@@ -10,9 +10,6 @@ AnnotationRegistry::registerLoader('class_exists');
 $app = new Silex\Application();
 
 $app->register(new Api\ServiceProvider\CapServiceProvider());
-$app->mount('/api', new Api\Controller\TestController(
-    $app['cp.cap_sniffer'],
-    $app['cp.provider.type']
-));
+$app->mount('/api', $app['api.training.controller']);
 
 $app->run();

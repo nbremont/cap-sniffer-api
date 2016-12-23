@@ -2,6 +2,7 @@
 
 namespace Api\ServiceProvider;
 
+use Api\Controller\TestController;
 use Cocur\Slugify\Slugify;
 use Cp\Calendar\Builder\CalendarBuilder;
 use Cp\Calendar\Builder\CalendarEventBuilder;
@@ -134,6 +135,13 @@ class CapServiceProvider implements ServiceProviderInterface
                 $app['cp.calendar.builder.calendar'],
                 $app['cocur.slugify'],
                 $app['cp.manager.configuration']
+            );
+        };
+
+        $app['api.training.controller'] = function () use ($app) {
+            return new TestController(
+                $app['cp.cap_sniffer'],
+                $app['cp.provider.type']
             );
         };
     }
