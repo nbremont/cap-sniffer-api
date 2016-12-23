@@ -14,8 +14,8 @@
   "minimum-stability": "dev",
   "require": {
     "php": ">=5.6",
-    "nbremont/cap-sniffer" : "v1.0",
-    "silex/silex": "^2.0"
+    "silex/silex": "^2.0",
+    "nbremont/cap-sniffer": "dev-master"
   },
   "autoload": {
     "psr-0": {

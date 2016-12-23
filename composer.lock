@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d2de0c2bbc5175ae6ae834fea38639f7",
-    "content-hash": "e7e8edd2f5f0a8f5c768f28b348be504",
+    "hash": "470c32d12f7cb29b6f5f47eaca58298b",
+    "content-hash": "1d0eb76ba62b58926d66cec5268a644b",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -524,16 +524,16 @@
         },
         {
             "name": "nbremont/cap-sniffer",
-            "version": "v1.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nbremont/cap-sniffer.git",
-                "reference": "2ea4874a6965f0c5442f8ba2aa35b11ec94f2998"
+                "reference": "7c2039337d5da15d9b43a61fdb77365d0fcd109f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nbremont/cap-sniffer/zipball/2ea4874a6965f0c5442f8ba2aa35b11ec94f2998",
-                "reference": "2ea4874a6965f0c5442f8ba2aa35b11ec94f2998",
+                "url": "https://api.github.com/repos/nbremont/cap-sniffer/zipball/7c2039337d5da15d9b43a61fdb77365d0fcd109f",
+                "reference": "7c2039337d5da15d9b43a61fdb77365d0fcd109f",
                 "shasum": ""
             },
             "require": {
@@ -574,7 +574,7 @@
                 "running",
                 "training"
             ],
-            "time": "2016-12-02 10:22:14"
+            "time": "2016-12-23 15:29:50"
         },
         {
             "name": "paquettg/php-html-parser",
@@ -2824,7 +2824,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "nbremont/cap-sniffer": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

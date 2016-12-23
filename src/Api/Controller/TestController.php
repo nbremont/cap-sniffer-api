@@ -3,7 +3,6 @@
 namespace Api\Controller;
 
 use Cp\CapSniffer;
-use Cp\DomainObject\TypeInterface;
 use Cp\Provider\TypeProvider;
 use Silex\Api\ControllerProviderInterface;
 use Silex\Application;
@@ -26,11 +25,13 @@ class TestController implements ControllerProviderInterface
     /**
      * TestController constructor.
      *
-     * @param CapSniffer $capSniffer
+     * @param CapSniffer   $capSniffer
+     * @param TypeProvider $typeProvider
      */
-    public function __construct(CapSniffer $capSniffer)
+    public function __construct(CapSniffer $capSniffer, TypeProvider $typeProvider)
     {
         $this->capSniffer = $capSniffer;
+        $this->typeProvider = $typeProvider;
     }
 
     /**
@@ -40,8 +41,8 @@ class TestController implements ControllerProviderInterface
     {
         $test = $app['controllers_factory'];
 
-        $test->get('/training/{type}/{week}/{seance}', function ($type, $week, $seance) {
-            return $this->testAction($type, $week, $seance);
+        $test->get('/training/{type}/{week}/{seance}', function ($type, $week, $seance) use ($app) {
+            return $this->trainingAction($app['cp.parser.plan'], $app['cp.transformer.url'], $type, $week, $seance);
         });
 
         return $test;
@@ -54,8 +55,10 @@ class TestController implements ControllerProviderInterface
      *
      * @return string
      */
-    public function testAction($type, $week, $seance)
+    public function trainingAction($plan, $transformer, $type, $week, $seance)
     {
-        return $this->capSniffer->generateCalendar($this->typeProvider->getTypes()[$type], $week, $seance);
+        return $plan->parseToJson(
+            $transformer->transformPlan($week, $seance, $this->typeProvider->getTypeByKey($type))
+        );
     }
 }
