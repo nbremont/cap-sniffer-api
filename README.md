@@ -16,7 +16,3 @@ $ git clone git@github.com:nbremont/cap-sniffer-api.git
 Then, you can install the dependencies:
 ```
 composer install
-
-
-
-
