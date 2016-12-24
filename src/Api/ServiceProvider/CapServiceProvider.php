@@ -70,9 +70,9 @@ class CapServiceProvider implements ServiceProviderInterface
             return new Slugify();
         };
 
-        $app['memcached'] = function () {
+        $app['memcached'] = function () use ($app) {
             $memcached = new Memcached();
-            $memcached->addServer("localhost", 11211);
+            $memcached->addServer($app['memcache.host'], $app['memcache.port']);
 
             return $memcached;
         };
@@ -84,8 +84,8 @@ class CapServiceProvider implements ServiceProviderInterface
             return $memcached;
         };
 
-        $app['cp.transformer.url'] = function () {
-            return new UrlTransformer('http://www.conseils-courseapied.com');
+        $app['cp.transformer.url'] = function () use ($app) {
+            return new UrlTransformer($app['url.base']);
         };
 
         $app['cp.parser.plan'] = function () use ($app) {

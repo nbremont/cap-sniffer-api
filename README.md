@@ -16,3 +16,8 @@ $ git clone git@github.com:nbremont/cap-sniffer-api.git
 Then, you can install the dependencies:
 ```
 composer install
+```
+Run app with:
+```
+php -S localhost:8080 web/index.php
+```
