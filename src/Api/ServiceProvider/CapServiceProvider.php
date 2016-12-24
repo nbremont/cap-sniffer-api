@@ -139,7 +139,7 @@ class CapServiceProvider implements ServiceProviderInterface
         };
 
         $app['api.training.controller'] = function () use ($app) {
-            return new TrainingController($app['cp.cap_sniffer'], $app['jms.serializer']);
+            return new TrainingController($app['cp.cap_sniffer'], $app['jms.serializer'], $app['cp.provider.type']);
         };
     }
 }

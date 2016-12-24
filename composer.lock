@@ -1013,7 +1013,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/c7a20754419dd6bf34d016b2a5bc103b032f3b11",
+                "url": "https://api.github.com/repos/symfony/console/zipball/7b57f3cf2c712f14f54b8f5ff3b4e35bc64f6acf",
                 "reference": "c7a20754419dd6bf34d016b2a5bc103b032f3b11",
                 "shasum": ""
             },
