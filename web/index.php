@@ -12,5 +12,6 @@ require_once __DIR__ . '/../resources/config/dev.php';
 
 $app->register(new Api\ServiceProvider\CapServiceProvider());
 $app->mount('/api', $app['api.training.controller']);
+$app->mount('/api', $app['api.calendar.controller']);
 
 $app->run();

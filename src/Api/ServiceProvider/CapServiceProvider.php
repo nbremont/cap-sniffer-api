@@ -2,6 +2,7 @@
 
 namespace Api\ServiceProvider;
 
+use Api\Controller\CalendarController;
 use Api\Controller\TrainingController;
 use Cocur\Slugify\Slugify;
 use Cp\Calendar\Builder\CalendarBuilder;
@@ -140,6 +141,10 @@ class CapServiceProvider implements ServiceProviderInterface
 
         $app['api.training.controller'] = function () use ($app) {
             return new TrainingController($app['cp.cap_sniffer'], $app['jms.serializer'], $app['cp.provider.type']);
+        };
+
+        $app['api.calendar.controller'] = function () use ($app) {
+            return new CalendarController($app['cp.cap_sniffer'], $app['jms.serializer'], $app['cp.provider.type']);
         };
     }
 }
