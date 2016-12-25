@@ -3,7 +3,7 @@
 namespace Api\Controller;
 
 use Silex\Application;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Class TestController
@@ -21,7 +21,19 @@ class TrainingController extends AbstractController
             return $this->getTrainingPlanAction($type, $week, $seance);
         });
 
+        $controllers->get('/training/types', function () {
+            return $this->getTypesAction();
+        });
+
         return $controllers;
+    }
+
+    /**
+     * @return JsonResponse
+     */
+    public function getTypesAction()
+    {
+        return new JsonResponse($this->typeProvider->getTypes());
     }
 
     /**
@@ -29,13 +41,12 @@ class TrainingController extends AbstractController
      * @param int    $week
      * @param int    $seance
      *
-     * @return string
+     * @return JsonResponse
      */
     public function getTrainingPlanAction($type, $week, $seance)
     {
-        $typeName = $this->typeProvider->getTypeByKey($type);
-        $plan = $this->serializer->serialize($this->capSniffer->getPlan($typeName, $week, $seance), 'json');
-
-        return new Response($plan, 200, ['Content-type' => 'application/json']);
+        return new JsonResponse(
+            json_decode($this->serializer->serialize($this->capSniffer->getPlan($type, $week, $seance), 'json'))
+        );
     }
 }

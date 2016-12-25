@@ -2,9 +2,8 @@
 
 namespace Api\Controller;
 
-use Silex\Api\ControllerProviderInterface;
 use Silex\Application;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Class TestController
@@ -30,15 +29,12 @@ class CalendarController extends AbstractController
      * @param int $week
      * @param int $seance
      *
-     * @return string
+     * @return JsonResponse
      */
     public function getCalendarAction($type, $week, $seance)
     {
-        $typeName = $this->typeProvider->getTypeByKey($type);
-        $calendar = $this->serializer->serialize([
-            'content' => $this->capSniffer->generateCalendar($typeName, $week, $seance),
-        ], 'json');
-
-        return new Response($calendar, 200, ['Content-type' => 'application/json']);
+        return new JsonResponse([
+            'content' => $this->capSniffer->generateCalendar($type, $week, $seance),
+        ]);
     }
 }
