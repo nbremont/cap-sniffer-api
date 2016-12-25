@@ -21,3 +21,10 @@ Run app with:
 ```
 php -S localhost:8080 web/index.php
 ```
+# Api
+## Interface
+| Method name                      | param                                |
+| :------------------------------- |:-------------------------------------|
+| /training/{type}/{week}/{seance} | type: string; week: int; seance: int |
+| /training/types                  | none                                 |
+| /calendar/{type}/{week}/{seance} | type: string; week: int; seance: int |
