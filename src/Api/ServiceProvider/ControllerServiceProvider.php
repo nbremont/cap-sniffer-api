@@ -18,7 +18,10 @@ class ControllerServiceProvider implements ServiceProviderInterface
     public function register(Container $app)
     {
         $app['api.training.controller'] = function () use ($app) {
-            return new TrainingController($app['cp.cap_sniffer'], $app['jms.serializer'], $app['cp.provider.type']);
+            $controller = new TrainingController($app['cp.cap_sniffer'], $app['jms.serializer'], $app['cp.provider.type']);
+            $controller->setConfigurationProvider($app['cp.provider.configuration']);
+
+            return $controller;
         };
 
         $app['api.calendar.controller'] = function () use ($app) {

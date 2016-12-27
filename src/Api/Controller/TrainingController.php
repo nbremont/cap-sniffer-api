@@ -2,6 +2,7 @@
 
 namespace Api\Controller;
 
+use Cp\Provider\ConfigurationProvider;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -10,6 +11,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class TrainingController extends AbstractController
 {
+    /**
+     * @var ConfigurationProvider
+     */
+    protected $configurationProvider;
+
     /**
      * {@inheritdoc}
      */
@@ -25,6 +31,10 @@ class TrainingController extends AbstractController
             return $this->getTypesAction();
         });
 
+        $controllers->get('/training/configuration/{type}', function ($type) {
+            return $this->getConfigurationForType($type);
+        });
+
         return $controllers;
     }
 
@@ -34,6 +44,20 @@ class TrainingController extends AbstractController
     public function getTypesAction()
     {
         return new JsonResponse($this->typeProvider->getTypes());
+    }
+
+    /**
+     * @param $typeName
+     *
+     * @return JsonResponse
+     */
+    public function getConfigurationForType($typeName)
+    {
+        $configurationCollection = $this->getConfigurationProvider()->getConfigurationByType($typeName);
+
+        return new JsonResponse(
+            json_decode($this->serializer->serialize($configurationCollection, 'json'))
+        );
     }
 
     /**
@@ -48,5 +72,21 @@ class TrainingController extends AbstractController
         return new JsonResponse(
             json_decode($this->serializer->serialize($this->capSniffer->getPlan($type, $week, $seance), 'json'))
         );
+    }
+
+    /**
+     * @return ConfigurationProvider
+     */
+    public function getConfigurationProvider()
+    {
+        return $this->configurationProvider;
+    }
+
+    /**
+     * @param ConfigurationProvider $configurationProvider
+     */
+    public function setConfigurationProvider($configurationProvider)
+    {
+        $this->configurationProvider = $configurationProvider;
     }
 }

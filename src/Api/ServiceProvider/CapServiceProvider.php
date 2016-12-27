@@ -8,7 +8,9 @@ use Cp\Calendar\Builder\CalendarEventBuilder;
 use Cp\CapSniffer;
 use Cp\Manager\ConfigurationManager;
 use Cp\Manager\PlanManager;
+use Cp\Parser\ConfigurationParser;
 use Cp\Parser\PlanParser;
+use Cp\Provider\ConfigurationProvider;
 use Cp\Provider\PlanProvider;
 use Cp\Provider\TypeProvider;
 use Cp\Transformer\UrlTransformer;
@@ -104,12 +106,28 @@ class CapServiceProvider implements ServiceProviderInterface
             );
         };
 
+        $app['cp.parser.configuration'] = function () use ($app) {
+            $configurationParser = new ConfigurationParser($app['phphtml.parser.dom']);
+            $configurationParser->setUrlTransformer($app['cp.transformer.url']);
+
+            return $configurationParser;
+        };
+
         $app['cp.manager.configuration'] = function () use ($app) {
-            return new ConfigurationManager($app['cp.provider.type']);
+            return new ConfigurationManager(
+                $app['cp.provider.type'],
+                $app['cp.parser.configuration'],
+                $app['doctrine.cache'],
+                $app['cp.transformer.url']
+            );
         };
 
         $app['cp.provider.plan'] = function () use ($app) {
             return new PlanProvider($app['cp.manager.plan']);
+        };
+
+        $app['cp.provider.configuration'] = function () use ($app) {
+            return new ConfigurationProvider($app['cp.manager.configuration']);
         };
 
         $app['cp.calendar.buider.calendar_event'] = function () {

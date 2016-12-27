@@ -528,12 +528,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nbremont/cap-sniffer.git",
-                "reference": "7c2039337d5da15d9b43a61fdb77365d0fcd109f"
+                "reference": "17497418ddac25d55aedd2e73fd72600cf82047f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nbremont/cap-sniffer/zipball/7c2039337d5da15d9b43a61fdb77365d0fcd109f",
-                "reference": "7c2039337d5da15d9b43a61fdb77365d0fcd109f",
+                "url": "https://api.github.com/repos/nbremont/cap-sniffer/zipball/17497418ddac25d55aedd2e73fd72600cf82047f",
+                "reference": "17497418ddac25d55aedd2e73fd72600cf82047f",
                 "shasum": ""
             },
             "require": {
@@ -574,7 +574,7 @@
                 "running",
                 "training"
             ],
-            "time": "2016-12-23 15:29:50"
+            "time": "2016-12-27 15:56:52"
         },
         {
             "name": "paquettg/php-html-parser",
@@ -1013,7 +1013,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/7b57f3cf2c712f14f54b8f5ff3b4e35bc64f6acf",
+                "url": "https://api.github.com/repos/symfony/console/zipball/c7a20754419dd6bf34d016b2a5bc103b032f3b11",
                 "reference": "c7a20754419dd6bf34d016b2a5bc103b032f3b11",
                 "shasum": ""
             },
