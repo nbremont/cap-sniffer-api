@@ -31,7 +31,7 @@ class ControllerServiceProvider implements ServiceProviderInterface
 
         if ('dev' === $app['env']) {
             $app['api.controller.swagger'] = function () use ($app) {
-                return new SwaggerController();
+                return new SwaggerController($app['doctrine.cache']);
             };
         }
 
