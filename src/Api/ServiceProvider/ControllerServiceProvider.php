@@ -29,8 +29,27 @@ class ControllerServiceProvider implements ServiceProviderInterface
             return new CalendarController($app['cp.cap_sniffer'], $app['jms.serializer'], $app['cp.provider.type']);
         };
 
-        $app['api.controller.swagger'] = function () use ($app) {
-            return new SwaggerController();
-        };
+        if ('dev' === $app['env']) {
+            $app['api.controller.swagger'] = function () use ($app) {
+                return new SwaggerController();
+            };
+        }
+
+        // mount controller by env
+        $this->mountController($app);
+    }
+
+    /**
+     * @param Container $app
+     */
+    protected function mountController(Container $app)
+    {
+        $app->mount('/api', $app['api.controller.training']);
+        $app->mount('/api', $app['api.controller.calendar']);
+
+        if ('dev' == $app['env']) {
+            $app->mount('/api', $app['api.controller.swagger']);
+        }
+
     }
 }
