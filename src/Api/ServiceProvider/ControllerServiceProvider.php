@@ -3,6 +3,7 @@
 namespace Api\ServiceProvider;
 
 use Api\Controller\CalendarController;
+use Api\Controller\Doc\SwaggerController;
 use Api\Controller\TrainingController;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
@@ -17,15 +18,19 @@ class ControllerServiceProvider implements ServiceProviderInterface
      */
     public function register(Container $app)
     {
-        $app['api.training.controller'] = function () use ($app) {
+        $app['api.controller.training'] = function () use ($app) {
             $controller = new TrainingController($app['cp.cap_sniffer'], $app['jms.serializer'], $app['cp.provider.type']);
             $controller->setConfigurationProvider($app['cp.provider.configuration']);
 
             return $controller;
         };
 
-        $app['api.calendar.controller'] = function () use ($app) {
+        $app['api.controller.calendar'] = function () use ($app) {
             return new CalendarController($app['cp.cap_sniffer'], $app['jms.serializer'], $app['cp.provider.type']);
+        };
+
+        $app['api.controller.swagger'] = function () use ($app) {
+            return new SwaggerController();
         };
     }
 }

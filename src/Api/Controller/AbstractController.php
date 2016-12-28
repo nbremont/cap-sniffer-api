@@ -11,7 +11,7 @@ use Silex\Application;
 /**
  * Class AbstractController
  *
- * @package Api\Controller
+ * @SWG\Info(title="Api code sniffer", version="1")
  */
 class AbstractController implements ControllerProviderInterface
 {

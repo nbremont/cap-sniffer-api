@@ -4,6 +4,7 @@ namespace Api\Controller;
 
 use Cp\Provider\ConfigurationProvider;
 use Silex\Application;
+use Swagger\Annotations as SWG;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -61,6 +62,35 @@ class TrainingController extends AbstractController
     }
 
     /**
+     * @SWG\Get(
+     *     path="/api/training/{type}/{week}/{seance}",
+     *     @SWG\Parameter(
+     *         name="type",
+     *         in="path",
+     *         description="Type of plan",
+     *         required=true,
+     *         type="string"
+     *     ),
+     *     @SWG\Parameter(
+     *         name="week",
+     *         in="path",
+     *         description="Number of week for a training plan",
+     *         required=true,
+     *         type="integer"
+     *     ),
+     *     @SWG\Parameter(
+     *         name="seance",
+     *         in="path",
+     *         description="Number of seance for a training plan",
+     *         required=true,
+     *         type="integer"
+     *     ),
+     *     @SWG\Response(
+     *         response="200",
+     *         description="Get PLan",
+     *     ),
+     * )
+     *
      * @param string $type
      * @param int    $week
      * @param int    $seance
