@@ -9,14 +9,9 @@ AnnotationRegistry::registerLoader('class_exists');
 $app = new Silex\Application();
 
 require_once __DIR__ . '/../resources/config/dev.php';
-$app['debug'] = true;
+require_once __DIR__ . '/../app/AppKernel.php';
 
-$app->register(new JDesrosiers\Silex\Provider\CorsServiceProvider(), array(
-    "cors.allowOrigin" => "http://localhost:8080",
-));
-$app->register(new Api\ServiceProvider\CapServiceProvider());
-$app->register(new Api\ServiceProvider\ControllerServiceProvider());
-
-$app->after($app["cors"]);
+$appKernel = new AppKernel('dev');
+$appKernel->register($app);
 
 $app->run();

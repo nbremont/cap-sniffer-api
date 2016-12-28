@@ -25,9 +25,38 @@ class CalendarController extends AbstractController
     }
 
     /**
+     * @SWG\Get(
+     *     path="/api/calendar/{type}/{week}/{seance}",
+     *     @SWG\Parameter(
+     *         name="type",
+     *         in="path",
+     *         description="Type of plan",
+     *         required=true,
+     *         type="string"
+     *     ),
+     *     @SWG\Parameter(
+     *         name="week",
+     *         in="path",
+     *         description="Number of week for a training plan",
+     *         required=true,
+     *         type="integer"
+     *     ),
+     *     @SWG\Parameter(
+     *         name="seance",
+     *         in="path",
+     *         description="Number of seance for a training plan",
+     *         required=true,
+     *         type="integer"
+     *     ),
+     *     @SWG\Response(
+     *         response="200",
+     *         description="Get content calendar (ics)",
+     *     ),
+     * )
+     *
      * @param string $type
-     * @param int $week
-     * @param int $seance
+     * @param int    $week
+     * @param int    $seance
      *
      * @return JsonResponse
      */

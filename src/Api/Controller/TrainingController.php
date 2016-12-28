@@ -28,18 +28,26 @@ class TrainingController extends AbstractController
             return $this->getTrainingPlanAction($type, $week, $seance);
         });
 
-        $controllers->get('/training/types', function () {
-            return $this->getTypesAction();
-        });
-
         $controllers->get('/training/configuration/{type}', function ($type) {
             return $this->getConfigurationForType($type);
+        });
+
+        $controllers->get('/training/types', function () {
+            return $this->getTypesAction();
         });
 
         return $controllers;
     }
 
     /**
+     * @SWG\Get(
+     *     path="/api/training/types",
+     *     @SWG\Response(
+     *         response="200",
+     *         description="Get types of plan",
+     *     ),
+     * )
+     *
      * @return JsonResponse
      */
     public function getTypesAction()
@@ -48,7 +56,22 @@ class TrainingController extends AbstractController
     }
 
     /**
-     * @param $typeName
+     * @SWG\Get(
+     *     path="/api/training/configuration/{type}",
+     *     @SWG\Parameter(
+     *         name="type",
+     *         in="path",
+     *         description="Type of plan",
+     *         required=true,
+     *         type="string"
+     *     ),
+     *     @SWG\Response(
+     *         response="200",
+     *         description="Get configuration for training plan",
+     *     ),
+     * )
+     *
+     * @param string $typeName
      *
      * @return JsonResponse
      */
@@ -115,7 +138,7 @@ class TrainingController extends AbstractController
     /**
      * @param ConfigurationProvider $configurationProvider
      */
-    public function setConfigurationProvider($configurationProvider)
+    public function setConfigurationProvider(ConfigurationProvider $configurationProvider)
     {
         $this->configurationProvider = $configurationProvider;
     }

@@ -2,6 +2,7 @@
 
 namespace Api\ServiceProvider;
 
+use Api\Cache\DevCache;
 use Cocur\Slugify\Slugify;
 use Cp\Calendar\Builder\CalendarBuilder;
 use Cp\Calendar\Builder\CalendarEventBuilder;
@@ -79,7 +80,12 @@ class CapServiceProvider implements ServiceProviderInterface
         };
 
         $app['doctrine.cache'] = function () use ($app) {
-            $memcached = new MemcachedCache();
+            if ('dev' === $app['env']) {
+                $memcached = new DevCache();
+            } else {
+                $memcached = new MemcachedCache();
+            }
+
             $memcached->setMemcached($app['memcached']);
 
             return $memcached;
