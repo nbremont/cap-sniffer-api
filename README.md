@@ -11,7 +11,7 @@ php -r "unlink('composer-setup.php');"
 # Installation
 Start by cloning this repository:
 ```
-$ git clone git@github.com:nbremont/cap-sniffer-api.git
+$ git clone git@github.com:unikorp/cap-sniffer-api.git
 ```
 Then, you can install the dependencies:
 ```
