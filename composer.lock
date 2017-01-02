@@ -578,12 +578,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nbremont/cap-sniffer.git",
-                "reference": "17497418ddac25d55aedd2e73fd72600cf82047f"
+                "reference": "c3a0f08eefad994f1d94b9fe44367e90cfe392a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nbremont/cap-sniffer/zipball/17497418ddac25d55aedd2e73fd72600cf82047f",
-                "reference": "17497418ddac25d55aedd2e73fd72600cf82047f",
+                "url": "https://api.github.com/repos/nbremont/cap-sniffer/zipball/c3a0f08eefad994f1d94b9fe44367e90cfe392a5",
+                "reference": "c3a0f08eefad994f1d94b9fe44367e90cfe392a5",
                 "shasum": ""
             },
             "require": {
@@ -624,7 +624,7 @@
                 "running",
                 "training"
             ],
-            "time": "2016-12-27 15:56:52"
+            "time": "2017-01-02 15:41:21"
         },
         {
             "name": "paquettg/php-html-parser",
