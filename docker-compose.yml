@@ -1,0 +1,22 @@
+version: '2'
+services:
+    memcached:
+        image: memcached:latest
+        ports:
+            - "11211:11211"
+    php:
+        build: ./docker/php
+        ports:
+            - "9000"
+        volumes:
+            - "./:/var/www/cap"
+        links:
+            - memcached
+    nginx:
+        build: ./docker/nginx
+        ports:
+            - "80:80"
+        links:
+            - php
+        volumes_from:
+            - php
