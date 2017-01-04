@@ -32,7 +32,7 @@ class AppKernel
 
         $app->register(new Silex\Provider\ServiceControllerServiceProvider());
         $app->register(new JDesrosiers\Silex\Provider\CorsServiceProvider(), array(
-            "cors.allowOrigin" => "http://localhost:8080",
+            "cors.allowOrigin" => $app['host'],
         ));
         $app->register(new Api\ServiceProvider\CapServiceProvider());
         $app->register(new Api\ServiceProvider\ControllerServiceProvider());

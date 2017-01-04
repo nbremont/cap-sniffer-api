@@ -9,6 +9,9 @@
     {
       "name": "Nicolas BRÉMONT",
       "email": "bremont.nicolas@gmail.com"
+    },
+    {
+      "name": "Unikorp"
     }
   ],
   "minimum-stability": "dev",
