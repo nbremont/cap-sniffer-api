@@ -20,6 +20,11 @@ class SwaggerController implements ControllerProviderInterface
     protected $memcache;
 
     /**
+     * @var string
+     */
+    protected $controllerDir;
+
+    /**
      * SwaggerController constructor.
      *
      * @param MemcachedCache $memcacheCache
@@ -34,17 +39,20 @@ class SwaggerController implements ControllerProviderInterface
      */
     public function connect(Application $app)
     {
-        $controllers = $app['controllers_factory'];
-        $controllers->get('/doc', function () use ($app) {
-            $apiDocContent = $this->memcache->fetch(self::MEMCACHE_DOC_KEY);
-            if (false === $apiDocContent) {
-                $apiDocContent = \Swagger\scan($app['api.doc.controller.dir']);
-                $this->memcache->save(self::MEMCACHE_DOC_KEY, $apiDocContent);
-            }
+        $this->controllerDir = $app['api.doc.controller.dir'];
+    }
 
-            return new JsonResponse($apiDocContent);
-        });
+    /**
+     * @return JsonResponse
+     */
+    public function indexAction()
+    {
+        $apiDocContent = $this->memcache->fetch(self::MEMCACHE_DOC_KEY);
+        if (false === $apiDocContent) {
+            $apiDocContent = \Swagger\scan($this->controllerDir);
+            $this->memcache->save(self::MEMCACHE_DOC_KEY, $apiDocContent);
+        }
 
-        return $controllers;
+        return new JsonResponse($apiDocContent);
     }
 }

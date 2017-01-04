@@ -18,38 +18,25 @@ class ControllerServiceProvider implements ServiceProviderInterface
      */
     public function register(Container $app)
     {
-        $app['api.controller.training'] = function () use ($app) {
-            $controller = new TrainingController($app['cp.cap_sniffer'], $app['jms.serializer'], $app['cp.provider.type']);
+        $app['training.controller'] = function () use ($app) {
+            $controller = new TrainingController(
+                $app['cp.cap_sniffer'],
+                $app['jms.serializer'],
+                $app['cp.provider.type']
+            );
             $controller->setConfigurationProvider($app['cp.provider.configuration']);
 
             return $controller;
         };
 
-        $app['api.controller.calendar'] = function () use ($app) {
+        $app['calendar.controller'] = function () use ($app) {
             return new CalendarController($app['cp.cap_sniffer'], $app['jms.serializer'], $app['cp.provider.type']);
         };
 
         if ('dev' === $app['env']) {
-            $app['api.controller.swagger'] = function () use ($app) {
+            $app['swagger.controller'] = function () use ($app) {
                 return new SwaggerController($app['doctrine.cache']);
             };
         }
-
-        // mount controller by env
-        $this->mountController($app);
-    }
-
-    /**
-     * @param Container $app
-     */
-    protected function mountController(Container $app)
-    {
-        $app->mount('/api', $app['api.controller.training']);
-        $app->mount('/api', $app['api.controller.calendar']);
-
-        if ('dev' == $app['env']) {
-            $app->mount('/api', $app['api.controller.swagger']);
-        }
-
     }
 }

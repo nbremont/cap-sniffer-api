@@ -30,6 +30,7 @@ class AppKernel
         // initialize env
         $app['env'] = self::$env;
 
+        $app->register(new Silex\Provider\ServiceControllerServiceProvider());
         $app->register(new JDesrosiers\Silex\Provider\CorsServiceProvider(), array(
             "cors.allowOrigin" => "http://localhost:8080",
         ));

@@ -9,6 +9,7 @@ AnnotationRegistry::registerLoader('class_exists');
 $app = new Silex\Application();
 
 require_once __DIR__ . '/../resources/config/dev.php';
+require_once __DIR__ . '/../resources/routes/dev.php';
 require_once __DIR__ . '/../app/AppKernel.php';
 
 $appKernel = new AppKernel('dev');

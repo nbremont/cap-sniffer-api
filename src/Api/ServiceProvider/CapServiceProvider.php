@@ -153,11 +153,11 @@ class CapServiceProvider implements ServiceProviderInterface
 
         $app['cp.cap_sniffer'] = function () use ($app) {
             return new CapSniffer(
+                $app['cp.calendar.builder.calendar'],
                 $app['cp.provider.type'],
                 $app['cp.provider.plan'],
-                $app['cp.calendar.builder.calendar'],
-                $app['cocur.slugify'],
-                $app['cp.manager.configuration']
+                $app['cp.provider.configuration'],
+                $app['cocur.slugify']
             );
         };
     }

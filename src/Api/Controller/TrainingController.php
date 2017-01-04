@@ -18,28 +18,6 @@ class TrainingController extends AbstractController
     protected $configurationProvider;
 
     /**
-     * {@inheritdoc}
-     */
-    public function connect(Application $app)
-    {
-        $controllers = $app['controllers_factory'];
-
-        $controllers->get('/training/{type}/{week}/{seance}', function ($type, $week, $seance) use ($app) {
-            return $this->getTrainingPlanAction($type, $week, $seance);
-        });
-
-        $controllers->get('/training/configuration/{type}', function ($type) {
-            return $this->getConfigurationForType($type);
-        });
-
-        $controllers->get('/training/types', function () {
-            return $this->getTypesAction();
-        });
-
-        return $controllers;
-    }
-
-    /**
      * @SWG\Get(
      *     path="/api/training/types",
      *     @SWG\Response(
@@ -71,13 +49,14 @@ class TrainingController extends AbstractController
      *     ),
      * )
      *
-     * @param string $typeName
+     * @param $type
      *
      * @return JsonResponse
+     *
      */
-    public function getConfigurationForType($typeName)
+    public function getConfigurationForType($type)
     {
-        $configurationCollection = $this->getConfigurationProvider()->getConfigurationByType($typeName);
+        $configurationCollection = $this->getConfigurationProvider()->getConfigurationByType($type);
 
         return new JsonResponse(
             json_decode($this->serializer->serialize($configurationCollection, 'json'))
