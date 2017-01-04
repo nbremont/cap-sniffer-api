@@ -5,6 +5,7 @@ namespace Api\Controller\Doc;
 use Doctrine\Common\Cache\MemcachedCache;
 use Silex\Api\ControllerProviderInterface;
 use Silex\Application;
+use Silex\ControllerCollection;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -28,18 +29,12 @@ class SwaggerController implements ControllerProviderInterface
      * SwaggerController constructor.
      *
      * @param MemcachedCache $memcacheCache
+     * @param string         $controllerDir
      */
-    public function __construct(MemcachedCache $memcacheCache)
+    public function __construct(MemcachedCache $memcacheCache, $controllerDir)
     {
         $this->memcache = $memcacheCache;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function connect(Application $app)
-    {
-        $this->controllerDir = $app['api.doc.controller.dir'];
+        $this->controllerDir = $controllerDir;
     }
 
     /**
@@ -54,5 +49,12 @@ class SwaggerController implements ControllerProviderInterface
         }
 
         return new JsonResponse($apiDocContent);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function connect(Application $app)
+    {
     }
 }

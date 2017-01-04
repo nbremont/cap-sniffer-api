@@ -5,4 +5,5 @@ $app->get('/api/training/configuration/{type}', 'training.controller:getConfigur
 $app->get('/api/training/{type}/{week}/{seance}', 'training.controller:getTrainingPlanAction');
 
 $app->get('/api/calendar/{type}/{week}/{seance}', 'calendar.controller:getCalendarAction');
-$app->get('/api/calendar/{type}/{week}/{seance}', 'calendar.controller:getCalendarAction');
+
+$app->get('/api/doc', 'swagger.controller:indexAction');
