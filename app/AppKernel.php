@@ -31,21 +31,20 @@ class AppKernel
         $app['env'] = self::$env;
 
         $app->register(new Silex\Provider\ServiceControllerServiceProvider());
-        $app->register(new JDesrosiers\Silex\Provider\CorsServiceProvider(), array(
-            "cors.allowOrigin" => $app['host'],
-        ));
         $app->register(new Api\ServiceProvider\CapServiceProvider());
         $app->register(new Api\ServiceProvider\ControllerServiceProvider());
 
-        // Registers an after filter
-        $this->after($app);
+        $this->loadConfiguration($app);
     }
 
     /**
+     * Load configuration file by env
+     *
      * @param Container $app
      */
-    protected function after(Container $app)
+    protected function loadConfiguration(Container $app)
     {
-        $app->after($app["cors"]);
+        require_once __DIR__ . '/../resources/config/' . $app['env'] . '.php';
+        require_once __DIR__ . '/../resources/routes/' . $app['env'] . '.php';
     }
 }

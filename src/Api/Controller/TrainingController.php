@@ -71,7 +71,7 @@ class TrainingController extends AbstractController
      *         in="path",
      *         description="Type of plan",
      *         required=true,
-     *         type="string"
+     *         type="integer"
      *     ),
      *     @SWG\Parameter(
      *         name="week",

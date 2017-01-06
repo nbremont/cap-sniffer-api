@@ -2,4 +2,4 @@
 
 require_once 'prod.php';
 
-$app->get('/api/doc', 'training.controller:indexAction');
+$app->get('/api/doc', 'swagger.controller:indexAction');

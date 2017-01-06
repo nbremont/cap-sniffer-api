@@ -129,7 +129,7 @@ class CapServiceProvider implements ServiceProviderInterface
         };
 
         $app['cp.provider.plan'] = function () use ($app) {
-            return new PlanProvider($app['cp.manager.plan']);
+            return new PlanProvider($app['cp.manager.plan'], $app['cp.provider.type']);
         };
 
         $app['cp.provider.configuration'] = function () use ($app) {
