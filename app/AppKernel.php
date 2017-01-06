@@ -40,15 +40,6 @@ class AppKernel
     }
 
     /**
-     * @param Container $app
-     */
-    public function registerHandler(Container $app)
-    {
-        $handler = new ExceptionHandler();
-        $handler->handle($app);
-    }
-
-    /**
      * Load configuration file by env
      *
      * @param Container $app
