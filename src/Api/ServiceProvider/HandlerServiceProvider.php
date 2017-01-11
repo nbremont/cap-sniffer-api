@@ -7,7 +7,7 @@ use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
 /**
- * Class ExceptionHandler
+ * Class HandlerServiceProvider
  */
 class HandlerServiceProvider implements ServiceProviderInterface
 {

@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class ExceptionHandler
+ * Class ApiExceptionHandler
  */
 class ApiExceptionHandler implements ApiHandlerInterface
 {

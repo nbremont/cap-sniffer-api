@@ -5,7 +5,7 @@ namespace Api\Handler;
 use Pimple\Container;
 
 /**
- * Interface HandlerInterface
+ * Interface ApiHandlerInterface
  */
 interface ApiHandlerInterface
 {
