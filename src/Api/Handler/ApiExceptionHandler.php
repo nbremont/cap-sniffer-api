@@ -13,6 +13,8 @@ class ApiExceptionHandler implements ApiHandlerInterface
 {
     /**
      * @param Container $app
+     *
+     * @return void
      */
     public function handle(Container $app)
     {
