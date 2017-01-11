@@ -3,6 +3,7 @@
 namespace Api\ServiceProvider;
 
 use Api\Cache\DevCache;
+use Api\Handler\ApiExceptionHandler;
 use Cocur\Slugify\Slugify;
 use Cp\Calendar\Builder\CalendarBuilder;
 use Cp\Calendar\Builder\CalendarEventBuilder;
@@ -159,6 +160,10 @@ class CapServiceProvider implements ServiceProviderInterface
                 $app['cp.provider.configuration'],
                 $app['cocur.slugify']
             );
+        };
+
+        $app['api.handler.exception'] = function () {
+            return new ApiExceptionHandler();
         };
     }
 }
