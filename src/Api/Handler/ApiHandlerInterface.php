@@ -2,7 +2,7 @@
 
 namespace Api\Handler;
 
-use Pimple\Container;
+use Silex\Application;
 
 /**
  * Interface ApiHandlerInterface
@@ -10,9 +10,9 @@ use Pimple\Container;
 interface ApiHandlerInterface
 {
     /**
-     * @param Container $app
+     * @param Application $app
      *
      * @return void
      */
-    public function handle(Container $app);
+    public function handle(Application $app);
 }

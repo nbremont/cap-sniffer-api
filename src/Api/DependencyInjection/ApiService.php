@@ -1,23 +1,32 @@
 <?php
 
-namespace Api\ServiceProvider;
+namespace Api\DependencyInjection;
 
 use Api\Controller\CalendarController;
 use Api\Controller\Doc\SwaggerController;
 use Api\Controller\TrainingController;
-use Pimple\Container;
-use Pimple\ServiceProviderInterface;
+use Api\Handler\ApiExceptionHandler;
+use Api\Handler\ApiViewHandler;
+use Silex\Application;
 
 /**
- * Class ControllerServiceProvider
+ * Class ApiService
  */
-class ControllerServiceProvider implements ServiceProviderInterface
+class ApiService implements DependencyInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function register(Container $app)
+    public function load(Application $app)
     {
+        $app['api.handler.exception'] = function () {
+            return new ApiExceptionHandler();
+        };
+
+        $app['api.handler.view'] = function () {
+            return new ApiViewHandler();
+        };
+
         $app['training.controller'] = function () use ($app) {
             $controller = new TrainingController(
                 $app['cp.cap_sniffer'],

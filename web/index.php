@@ -10,7 +10,7 @@ $app = new Silex\Application();
 
 require_once __DIR__ . '/../app/AppKernel.php';
 
-$appKernel = new AppKernel('prod');
+$appKernel = new AppKernel('dev');
 $appKernel->register($app);
 
 $app->run();
