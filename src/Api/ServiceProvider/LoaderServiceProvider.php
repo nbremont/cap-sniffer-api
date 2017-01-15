@@ -8,6 +8,9 @@ use Pimple\ServiceProviderInterface;
 use Silex\Api\BootableProviderInterface;
 use Silex\Application;
 
+/**
+ * Class LoaderServiceProvider
+ */
 class LoaderServiceProvider implements ServiceProviderInterface, BootableProviderInterface
 {
     /**
