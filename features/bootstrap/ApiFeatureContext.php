@@ -40,5 +40,4 @@ class ApiFeatureContext extends WebApiContext
 
         return file_get_contents($filePath);
     }
-
 }
