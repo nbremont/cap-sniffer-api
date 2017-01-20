@@ -48,8 +48,8 @@ class CalendarController extends AbstractController
      */
     public function getCalendarAction($type, $week, $seance)
     {
-        return new JsonResponse([
+        return [
             'content' => $this->capSniffer->generateCalendar($type, $week, $seance),
-        ]);
+        ];
     }
 }

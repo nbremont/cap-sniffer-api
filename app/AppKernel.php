@@ -1,5 +1,6 @@
 <?php
 
+use Api\Handler\ExceptionHandler;
 use Pimple\Container;
 
 /**
@@ -31,8 +32,13 @@ class AppKernel
         $app['env'] = self::$env;
 
         $app->register(new Silex\Provider\ServiceControllerServiceProvider());
-        $app->register(new Api\ServiceProvider\CapServiceProvider());
-        $app->register(new Api\ServiceProvider\ControllerServiceProvider());
+        $app->register(new Api\ServiceProvider\LoaderServiceProvider(), [
+            'service.loader' => [
+                new \Api\DependencyInjection\ApiService(),
+                new \Api\DependencyInjection\CapService(),
+            ]
+        ]);
+        $app->register(new Api\ServiceProvider\HandlerServiceProvider());
 
         $this->loadConfiguration($app);
     }

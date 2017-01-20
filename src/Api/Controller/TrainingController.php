@@ -30,7 +30,7 @@ class TrainingController extends AbstractController
      */
     public function getTypesAction()
     {
-        return new JsonResponse($this->typeProvider->getTypes());
+        return $this->typeProvider->getTypes();
     }
 
     /**
@@ -58,9 +58,7 @@ class TrainingController extends AbstractController
     {
         $configurationCollection = $this->getConfigurationProvider()->getConfigurationByType($type);
 
-        return new JsonResponse(
-            json_decode($this->serializer->serialize($configurationCollection, 'json'))
-        );
+        return $this->serializer->serialize($configurationCollection, 'json');
     }
 
     /**
@@ -101,9 +99,7 @@ class TrainingController extends AbstractController
      */
     public function getTrainingPlanAction($type, $week, $seance)
     {
-        return new JsonResponse(
-            json_decode($this->serializer->serialize($this->capSniffer->getPlan($type, $week, $seance), 'json'))
-        );
+        return $this->serializer->serialize($this->capSniffer->getPlan($type, $week, $seance), 'json');
     }
 
     /**
