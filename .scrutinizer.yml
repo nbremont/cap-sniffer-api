@@ -1,5 +1,5 @@
 build:
   tests:
     before:
-      - command: 'php -S localhost:8080 web/index.php'
+      - command: 'php -S localhost:8080 web/index.php & > /edv/nul'
       - command: './vendor/bin/behat'
