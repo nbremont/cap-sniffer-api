@@ -1,3 +1,4 @@
+[![Build Status](https://scrutinizer-ci.com/g/nbremont/cap-sniffer-api/badges/build.png?b=master)](https://scrutinizer-ci.com/g/nbremont/cap-sniffer-api/build-status/master)
 # Cap Sniffer Api
 Cap sniffer api is an api build in Silex to get training plan of running
 
