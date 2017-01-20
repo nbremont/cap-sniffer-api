@@ -1,0 +1,8 @@
+default:
+    extensions:
+        Behat\WebApiExtension:
+            base_url: http://localhost:8080/
+    suites:
+        api:
+            paths:    [ %paths.base%/features/api ]
+            contexts: [ ApiFeatureContext ]
