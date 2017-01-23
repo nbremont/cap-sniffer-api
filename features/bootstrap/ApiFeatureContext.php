@@ -9,31 +9,49 @@ use Symfony\Component\Filesystem\Exception\FileNotFoundException;
  */
 class ApiFeatureContext extends WebApiContext
 {
-    const FIXTURES_PATH = __DIR__ . '/../../fixtures/api';
+    const FIXTURES_PATH = __DIR__.'/../../fixtures/api';
 
     /**
-     * @Then the json response contains result of fixture for :arg1 km :arg2 weeks and :arg3 seances
+     * @Then the json response contains result of fixture :resource for :type km :week weeks and :seance seances
      *
+     * @param string $resource
      * @param string $type
      * @param string $week
      * @param string $seance
      */
-    public function theJsonResponseContainsResultOfFixtureForKmWeeksAndSeances($type, $week, $seance)
+    public function theJsonResponseContainsResultOfFixturePlanForKmWeeksAndSeances($resource, $type, $week, $seance)
     {
-        $expected = new PyStringNode(explode("\n", $this->getFixturesByConfiguration($type, $week, $seance)), 0);
+        $expected = new PyStringNode(explode("\n", $this->getFixturesByResources($resource, $type, $week, $seance)), 0);
         $this->theResponseShouldContainJson($expected);
     }
 
     /**
-     * @param int $type
-     * @param int $week
-     * @param int $seance
+     * @Then the json response contains result of fixture :resource for :type
+     *
+     * @param string $resource
+     * @param string $type
+     */
+    public function theJsonResponseContainsResultOfFixtureFor($resource, $type)
+    {
+        $expected = new PyStringNode(explode("\n", $this->getFixturesByResources($resource, $type)), 0);
+        $this->theResponseShouldContainJson($expected);
+    }
+
+
+    /**
+     * @param string $resource
+     * @param int    $type
+     * @param int    $week
+     * @param int    $seance
      *
      * @return string
      */
-    public function getFixturesByConfiguration($type, $week, $seance)
+    public function getFixturesByResources($resource, $type, $week = null, $seance = null)
     {
-        $filePath = self::FIXTURES_PATH . '/plan-'.$type.'-'.$week.'-'.$seance.'.json';
+        $weekSuffix = null !== $week ? '-'.$week : '';
+        $seanceSuffix = null !== $seance ? '-'.$seance : '';
+
+        $filePath = self::FIXTURES_PATH.'/'.$resource.'-'.$type.$weekSuffix.$seanceSuffix.'.json';
         if (!is_file($filePath)) {
             throw new FileNotFoundException(null, null, null, $filePath);
         }
