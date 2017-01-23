@@ -19,14 +19,6 @@ class ApiService implements DependencyInterface
      */
     public function load(Application $app)
     {
-        $app['api.handler.exception'] = function () {
-            return new ApiExceptionHandler();
-        };
-
-        $app['api.handler.view'] = function () {
-            return new ApiViewHandler();
-        };
-
         $app['training.controller'] = function () use ($app) {
             $controller = new TrainingController(
                 $app['cp.cap_sniffer'],
