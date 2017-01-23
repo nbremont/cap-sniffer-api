@@ -37,12 +37,11 @@ class ApiFeatureContext extends WebApiContext
         $this->theResponseShouldContainJson($expected);
     }
 
-
     /**
      * @param string $resource
-     * @param int    $type
-     * @param int    $week
-     * @param int    $seance
+     * @param string $type
+     * @param string $week
+     * @param string $seance
      *
      * @return string
      */
