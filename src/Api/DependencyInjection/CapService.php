@@ -1,9 +1,8 @@
 <?php
 
-namespace Api\ServiceProvider;
+namespace Api\DependencyInjection;
 
 use Api\Cache\DevCache;
-use Api\Handler\ApiExceptionHandler;
 use Cocur\Slugify\Slugify;
 use Cp\Calendar\Builder\CalendarBuilder;
 use Cp\Calendar\Builder\CalendarEventBuilder;
@@ -23,18 +22,17 @@ use Jsvrcek\ICS\CalendarStream;
 use Jsvrcek\ICS\Utility\Formatter;
 use Memcached;
 use PHPHtmlParser\Dom;
-use Pimple\Container;
-use Pimple\ServiceProviderInterface;
+use Silex\Application;
 
 /**
- * Class CapServiceProvider
+ * Class CapService
  */
-class CapServiceProvider implements ServiceProviderInterface
+class CapService implements DependencyInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function register(Container $app)
+    public function load(Application $app)
     {
         $app['ics.calendar_stream'] = function () {
             return new CalendarStream();
@@ -160,10 +158,6 @@ class CapServiceProvider implements ServiceProviderInterface
                 $app['cp.provider.configuration'],
                 $app['cocur.slugify']
             );
-        };
-
-        $app['api.handler.exception'] = function () {
-            return new ApiExceptionHandler();
         };
     }
 }

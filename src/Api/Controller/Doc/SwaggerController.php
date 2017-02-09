@@ -48,7 +48,7 @@ class SwaggerController implements ControllerProviderInterface
             $this->memcache->save(self::MEMCACHE_DOC_KEY, $apiDocContent);
         }
 
-        return new JsonResponse($apiDocContent);
+        return $apiDocContent;
     }
 
     /**

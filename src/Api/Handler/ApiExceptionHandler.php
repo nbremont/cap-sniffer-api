@@ -2,7 +2,7 @@
 
 namespace Api\Handler;
 
-use Pimple\Container;
+use Silex\Application;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -12,11 +12,11 @@ use Symfony\Component\HttpFoundation\Request;
 class ApiExceptionHandler implements ApiHandlerInterface
 {
     /**
-     * @param Container $app
+     * @param Application $app
      *
      * @return void
      */
-    public function handle(Container $app)
+    public function handle(Application $app)
     {
         $app->error(function (\Exception $e, Request $request, $code) {
             return new JsonResponse([
